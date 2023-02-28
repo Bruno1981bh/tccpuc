@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+  <h1>Dashboard</h1>
+  <h2>Activities</h2>
+  <ul>
+    {% for atividade in atividades %}
+    <li>{{ atividade['atividade'] }} - {{ atividade['palavras'] }} <a href="{{ url_for('edit-activity', id=atividade['_id']) }}">Edit</a> <form method="post" action="{{ url_for('delete-activity', id=atividade['_id']) }}" style="display: inline;"><input type="submit" value="Delete"></form></li>
+    {% endfor %}
+  </ul>
+  <h2>Results</h2>
+  <ul>
+    {% for resultado in resultados %}
+    <li>{{ resultado['aluno'] }} - {{ resultado['nome_atividade'] }} - {{ resultado['nota'] }} <a href="{{ url_for('edit-result', id=resultado['_id']) }}">Edit</a> <form method="post" action="{{ url_for('delete-result', id=resultado['_id']) }}" style="display:
